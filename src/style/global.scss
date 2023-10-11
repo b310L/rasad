@@ -3,6 +3,8 @@ $black: #000;
 * {
   margin: 0;
   padding: 0;
+  font-family: vazir;
+
 }
 html body {
   width: 100%;
@@ -20,9 +22,7 @@ html body {
   format: ("ttf");
   font-display: swap;
 }
-* {
-  font-family: vazir;
-}
+
 a {
   text-decoration: none;
 
