@@ -1,4 +1,8 @@
-import './globals.css'
+import MuiProviders from '@/provider/MuiProviders'
+import Provider from '@/provider/Provider';
+import '../style/global.scss'
+// import Appbar from "@/components/Appbar";
+
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
@@ -15,8 +19,19 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" dir="rtl">
+       <Provider>
+        <body className={inter.className}>
+          {/* <Appbar /> */}
+
+          {children}
+        </body>
+      </Provider>
     </html>
   )
 }
+
+
+
+
+
