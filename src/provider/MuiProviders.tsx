@@ -1,6 +1,7 @@
 "use client";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { CacheProvider } from "@emotion/react";
+import { primary } from "@/client/BaseColor";
 
 const theme = createTheme({
   direction: "rtl",
@@ -38,7 +39,8 @@ const theme = createTheme({
     primary: {
 
       main: "#00b7c3",
-      dark:"#002527",
+      light:primary[100],
+      dark:primary[600],
       mainGradient: "linear-gradient(to right, #00b7c3, #33c5cf)",
       
       // light: will be calculated from palette.primary.main,
@@ -75,6 +77,7 @@ const theme = createTheme({
         },
       },
     },
+    
     MuiFormLabel: {
       styleOverrides: {
         // Name of the slot
@@ -167,9 +170,9 @@ const theme = createTheme({
 theme.components.MuiInput = {
   styleOverrides: {
     root: {
-      fontSize: '.8rem',
+      fontSize: '1rem',
       [theme.breakpoints.up('sm')]: {
-        fontSize: '.8rem',
+        fontSize: '1rem',
       },
     },
   },

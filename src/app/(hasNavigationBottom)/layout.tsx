@@ -8,7 +8,6 @@ import {
 import { SetStateAction, createContext, useContext, useState } from "react";
 import { useTheme } from "@mui/material/styles";
 
-
 import { TabValueContext } from "@/provider/TabValueProvider";
 import NavigationB from "@/client/NavigationB";
 
@@ -17,16 +16,18 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [valueTab, setValueTab] = useContext(TabValueContext);
-
-
+  const [index, setIndex] = useContext(TabValueContext);
   const theme = useTheme();
-  const screenDesktop = useMediaQuery(theme.breakpoints.up("md"));
-  if (screenDesktop) {
-    return (
-       <>
-       {children}
-       </>
-    );
-  }
+  const screenTablet = useMediaQuery(theme.breakpoints.down("md"));
+  return (
+    <>
+      <Box display={'flex'} flexDirection={'column'} height={'100vh'}> 
+        <Box p={2}  flexGrow={1}>{children}</Box>
+        
+        {screenTablet && (
+            <NavigationB valueTab={index} setValueTab={setIndex} />
+        )}
+      </Box>
+    </>
+  );
 }

@@ -2,21 +2,21 @@
 import { Box, ButtonBase, Fade, Grow, IconButton, Slide } from "@mui/material";
 import Image, { StaticImageData } from "next/image";
 import React, { useEffect, useRef, useState } from "react";
+import { primary } from "./BaseColor";
 //static image data
-import pizza1 from "../public/pizza1.jpg";
-import hamber from "../public/hamber.jpg";
-import pizza2 from "../public/pizza2.jpg";
+import pizza1 from "../../public/imgs/Frame.svg";
+import hamber from "../../public/imgs/Frame.svg";
+import pizza2 from "../../public/imgs/Frame.svg";
 //mui icon
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 
-const Crousel = () => {
+const Crousel = ({bgcolor='transparent',height= { xs: 150, sm: 250, md: 300, lg: 450 },showBtn=true},) => {
   const [index, setIndex] = useState<number>(0);
   const imgSrcList: (string | StaticImageData)[] = [
     pizza1,
     hamber,
     pizza2,
-    "https://eatfooddrinkbeer.com/wp-content/uploads/2022/08/Uptop.jpg",
   ];
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const timeOfInterval: number = 5000;
@@ -41,7 +41,7 @@ const Crousel = () => {
     color: "#fff",
     zIndex: 5,
     top: "50%",
-    bgcolor: "#e1044b77",
+    bgcolor: bgcolor,
     
     transform: "translateY(-50%)",
   };
@@ -74,37 +74,43 @@ const Crousel = () => {
       id="crousel"
         sx={{
           width: "100%",
-          height: { xs: 200, sm: 250, md: 300, lg: 450 ,},
+          height: height,
           position: "relative",
+          bgcolor:bgcolor,
         }}
       >
-        <IconButton
-          sx={{ ...relativepos, left: 0, ml: 1 }}
+       { showBtn && <IconButton
           onClick={handleBeforePage}
+          size="small"
+          sx={{ ...relativepos,opacity:.7, left: 0,p:.3, ml: 1,bgcolor:primary[100] ,'&:hover,&:active':{
+            bgcolor:primary[300]
+          }}}
         >
-          <NavigateBeforeIcon fontSize="large" />
-        </IconButton>
+          <NavigateBeforeIcon fontSize="large" sx={{color:primary[800]}}/>
+        </IconButton>}
         
-        <Slide  direction={direction} in={true}
+        <Fade in={true} mountOnEnter unmountOnExit 
             key={index}
         
         >
           
           <Image
             src={imgSrcList[index]}
-            key={index}
             fill
             alt="crousel"
             style={{ objectFit: "cover" }}
           />
-        </Slide>
+        </Fade>
 
-        <IconButton
-          sx={{ ...relativepos, right: 0, mr: 1 }}
-          onClick={handleNextPage}
-        >
-          <NavigateNextIcon fontSize="large" />
-        </IconButton>
+       {showBtn && <IconButton
+        
+        sx={{ ...relativepos,opacity:.7,right: 0,p:.3, bgcolor:primary[100], mr: 1 ,'&:hover,&:active':{
+          bgcolor:primary[300]
+        }}}
+        onClick={handleNextPage}
+      >
+        <NavigateNextIcon fontSize="large" sx={{color:primary[800]}}/>
+      </IconButton>} 
       </Box>
     </>
   );

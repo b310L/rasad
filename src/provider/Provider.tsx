@@ -1,10 +1,13 @@
 import React from "react";
 import MuiProviders from "./MuiProviders";
 import CurrentUserProvider from "./CurrentUserProvider";
-const Provider = ({ children }) => {
+import TabValueProvider from "./TabValueProvider";
+const Provider = ({ children }: any) => {
   return (
     <MuiProviders>
-      <CurrentUserProvider>{children}</CurrentUserProvider>
+      <CurrentUserProvider>
+        <TabValueProvider>{children}</TabValueProvider>
+      </CurrentUserProvider>
     </MuiProviders>
   );
 };

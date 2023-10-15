@@ -6,6 +6,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Profile from '@/client components/Profile';
 import { TabValueContext } from '@/provider/TabValueProvider';
+
 const page = () => {
   const [valueTab, setValueTab] = useContext(TabValueContext);
   const renderSwitch=(param:number)=> {
