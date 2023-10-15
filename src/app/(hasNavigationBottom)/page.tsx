@@ -19,7 +19,7 @@ export default function Home() {
           />
         </Box>
       </Box>
-      <Box mt={-5}  display={"flex"} flexDirection={"column"} justifyContent={"center"}>
+      <Box   display={"flex"} flexDirection={"column"} justifyContent={"center"}>
         <Box sx={{ width: "100%", height: "100px", position: "relative" }}>
           <Image
             src={yazdImg}

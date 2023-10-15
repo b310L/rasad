@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <>
       <Box display={'flex'} flexDirection={'column'} height={'100vh'}> 
-        <Box p={2}  flexGrow={1}>{children}</Box>
+        <Box p={screenTablet?2:8}  flexGrow={1}>{children}</Box>
         
         {screenTablet && (
             <NavigationB valueTab={index} setValueTab={setIndex} />

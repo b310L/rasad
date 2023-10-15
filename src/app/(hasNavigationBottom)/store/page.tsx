@@ -97,6 +97,7 @@ const page = () => {
     <Box
       display={"flex"}
       gap={1}
+     
       flexDirection={"column"}
       justifyContent={"center"}
     >

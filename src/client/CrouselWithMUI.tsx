@@ -4,20 +4,32 @@ import Image, { StaticImageData } from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import { primary } from "./BaseColor";
 //static image data
-import pizza1 from "../../public/imgs/Frame.svg";
-import hamber from "../../public/imgs/Frame.svg";
-import pizza2 from "../../public/imgs/Frame.svg";
+import main from "../../public/imgs/main.jpg";
+import yazd from "../../public/imgs/yazd.jpg";
+import yazd2 from "../../public/imgs/yazd2.jpg";
+import yazd3 from "../../public/imgs/yazd3.jpg";
 //mui icon
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
-
-const Crousel = ({bgcolor='transparent',height= { xs: 150, sm: 250, md: 300, lg: 450 },showBtn=true},) => {
+interface T{
+  bgcolor?: string;
+  height?: number|object|string;
+  showBtn?: boolean;
+  imgSrcList?:Array<object>,
+}
+const Crousel = (props:T) => {
+  const {bgcolor='transparent',height= { xs: 150, sm: 250, md: 300, lg: 450 },showBtn=true,imgSrcList=[
+    {src:main},
+    {src:yazd},
+    {src:yazd2,objectFit:'cover',objectPosition:'center'},
+    {src:yazd3},
+  
+  ]}=props
   const [index, setIndex] = useState<number>(0);
-  const imgSrcList: (string | StaticImageData)[] = [
-    pizza1,
-    hamber,
-    pizza2,
-  ];
+
+
+  
+
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const timeOfInterval: number = 5000;
   const [direction, setDirection] = useState<'left'|'right'>('left');
@@ -75,6 +87,7 @@ const Crousel = ({bgcolor='transparent',height= { xs: 150, sm: 250, md: 300, lg:
         sx={{
           width: "100%",
           height: height,
+          overflow:'hidden',
           position: "relative",
           bgcolor:bgcolor,
         }}
@@ -89,19 +102,23 @@ const Crousel = ({bgcolor='transparent',height= { xs: 150, sm: 250, md: 300, lg:
           <NavigateBeforeIcon fontSize="large" sx={{color:primary[800]}}/>
         </IconButton>}
         
-        <Fade in={true} mountOnEnter unmountOnExit 
-            key={index}
+       
+        {imgSrcList.map(({src,objectFit='none',objectPosition='center'}:any ) =>{
+           return (
+        //     <Fade in={true}  
         
-        >
-          
-          <Image
-            src={imgSrcList[index]}
+        // > </Fade>
+            <Image
+            src={src}
             fill
             alt="crousel"
-            style={{ objectFit: "cover" }}
+            style={{ objectFit: objectFit,objectPosition: objectPosition}}
           />
-        </Fade>
-
+        
+       
+            )
+          })}
+         
        {showBtn && <IconButton
         
         sx={{ ...relativepos,opacity:.7,right: 0,p:.3, bgcolor:primary[100], mr: 1 ,'&:hover,&:active':{
