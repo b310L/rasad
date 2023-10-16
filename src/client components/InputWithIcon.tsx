@@ -30,6 +30,7 @@ interface CompProps {
     border_radius?:any;
     size?:any;
     disableLine?:any;
+    disabled?:boolean;
 }
 
 // function TabPanel(props: TabPanelProps) {
@@ -58,6 +59,7 @@ const InputWithIcon = ({
   size='small',
   disableLine=false,
   sx,
+  disabled=false
   
 }:CompProps) => {
 
@@ -82,6 +84,7 @@ const InputWithIcon = ({
         label={label}
         value={value}
         type={type}
+        disabled={disabled}
         required={required}
         placeholder={placeholder}
         // inputProps={{ minLength: 3, maxLength: 100,disableUnderline: noLine }}

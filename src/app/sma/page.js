@@ -1,9 +1,9 @@
-import UserForm from "../../client components/UserForm";
+import Store from "../../client components/Store";
 
 function page() {
     return (  
         <>
-            <UserForm />
+            <Store />
         </>
     );
 }

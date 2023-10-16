@@ -19,22 +19,22 @@ import React, {
 
 interface SetVal {
   setval: Dispatch<SetStateAction<string>>;
+  len?:number
 }
 
 const DigitCode = (props: SetVal) => {
-  const { setval } = props;
+  const { setval,len=4} = props;
 
   const inpsRef = useRef<Array<HTMLInputElement>>([]);
   const [inpsValue, setInpsVal] = useState<Array<string | number>>([]);
   let insertedValue = inpsValue.toString().replaceAll(",", "");
   setval(insertedValue);
-  const str2: string = "assa";
   const indexRef = useRef<number>(0);
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInpsVal(inpsRef.current.map((el) => el.value));
     setval(insertedValue);
     if (e.target.value.length === 1) {
-      if (indexRef.current !== str2.length - 1) {
+      if (indexRef.current !== len - 1) {
         indexRef.current = indexRef.current + 1;
         inpsRef.current[indexRef.current].focus();
       } else {
@@ -46,11 +46,11 @@ const DigitCode = (props: SetVal) => {
   };
 
   useEffect(() => {
-    inpsRef.current = inpsRef.current.slice(0, str2.length);
-  }, [str2]);
+    inpsRef.current = inpsRef.current.slice(0, len);
+  }, [len]);
   return (
     <Box sx={{ display: "flex", gap: 2, flexDirection: "row-reverse" }}>
-      {[...Array(str2.toString().length)].map((c, i) => {
+      {[...Array(len)].map((c, i) => {
         return (
           <Box
             key={i}
