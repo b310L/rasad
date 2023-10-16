@@ -21,12 +21,20 @@ export default function RootLayout({
   const screenTablet = useMediaQuery(theme.breakpoints.down("md"));
   return (
     <>
-      <Box display={'flex'} flexDirection={'column'} height={'100vh'}> 
-        <Box p={screenTablet?2:8}  flexGrow={1}>{children}</Box>
-        
+      <Box display={"flex"} flexDirection={"column"} height={"100vh"}>
+        <Box p={screenTablet ? 0 : 0} flexGrow={1}>
+          {children}
+        </Box>
+        <Box>
         {screenTablet && (
+            <Box  ><br/><br/></Box>
+          )}
+        </Box>
+        <Box flexShrink={0}>
+          {screenTablet && (
             <NavigationB valueTab={index} setValueTab={setIndex} />
-        )}
+          )}
+        </Box>
       </Box>
     </>
   );

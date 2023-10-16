@@ -9,7 +9,7 @@ const page = () => {
   const router = useRouter();
   const [currentUser, setCurrentUser] = useContext(currentUserContext);
   return (
-    <Box display={'flex'} justifyContent={'center'} flexDirection={'column'} gap={1}>
+    <Box p={2} display={'flex'} justifyContent={'center'} flexDirection={'column'} gap={1}>
       {currentUser ? (
         <>
           <Typography textAlign={'center'} sx={{ width:'100%', color: "#333" }}>

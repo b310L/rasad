@@ -5,7 +5,10 @@ export const GetApi = async (url: string) => {
     console.log(r)
     return r.data;
   }).catch((err) => {
-    return err
+    console.log(err) 
+    return false;
   });
-  return apiData;
+  const data=await apiData
+
+  return data;
 };

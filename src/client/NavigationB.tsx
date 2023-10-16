@@ -28,7 +28,7 @@ const NavigationB = ({valueTab,setValueTab,params}:any) => {
         <BottomNavigationAction  label="خانه" icon={<HomeIcon />} onClick={()=>router.push('/')} />
 
         <BottomNavigationAction
-        onClick={()=>router.push('/store')}
+        onClick={()=>router.push('/stores')}
           label="جستجوی فروشگاه"
           
           // icon={<Image  alt="s" width={25} height={25} src={shopSearchIcon} />}

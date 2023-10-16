@@ -6,7 +6,6 @@ export const PostApi = async (url: string,data:any) => {
     return r.data;
   }).catch((err) => {
     console.log(err)
-    return err
   });
   return apiData;
 };

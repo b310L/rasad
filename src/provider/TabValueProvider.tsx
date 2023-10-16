@@ -10,7 +10,7 @@ const TabValueProvider = ({ children }: any) => {
   let index;
   if (pathname === "/") {
     index = 0;
-  } else if (pathname === "/store") {
+  } else if (pathname === "/stores") {
     index = 1;
   } else if (pathname === "/profile") {
     index = 2;

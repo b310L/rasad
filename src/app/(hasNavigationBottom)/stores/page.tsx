@@ -64,7 +64,7 @@ const page = () => {
   const [data, setData] = useState<Array<object>>();
   const getDataFromApi = async () => {
     const dataFromAPi = await GetApi("http://0.0.0.0:8088/api/store/");
-    setData(data3)
+    setData(dataFromAPi)
     return dataFromAPi;
   };
   useEffect(() => {
@@ -79,7 +79,7 @@ const page = () => {
   const handleChange = (e: any) => {
     setSearchVal(e.target.value);
 
-    if(e.target.value.trim().length>=2){
+    if(e.target.value.trim().length>=1){
       const getDataFromApi = async () => {
         const dataFromAPi = await PostApi("http://0.0.0.0:8088/api/store/search/", {search:e.target.value.trim()});
         console.log('dataFromAPi'+dataFromAPi);
@@ -95,6 +95,7 @@ const page = () => {
   };
   return (
     <Box
+    p={2}
       display={"flex"}
       gap={1}
      
@@ -104,8 +105,8 @@ const page = () => {
       <Box width={"100%"} height={"100%"} sx={{ position: "sticky", top: 0,zIndex:4,backgroundColor:'#fff' }}>
         <Box>
           <Search searchVal={searchVal} onChange={(e) => handleChange(e)}>
-            <Suspense fallback={<CircularProgress />}>
-              {/* <Box
+            {/* <Suspense fallback={<CircularProgress />}>
+              <Box
                 sx={{
                   width: "100%",
                   position: "absolute",
@@ -117,8 +118,8 @@ const page = () => {
                 {searchVal.length >= 2 && (
                   <ResultSearch close={close} setClose={setClose} data={data} />
                 )}
-              </Box> */}
-            </Suspense>
+              </Box>
+            </Suspense> */}
           </Search>
           <Button fullWidth variant="custom">
             جستجوی فروشگاه از نقشه{" "}
@@ -129,7 +130,7 @@ const page = () => {
       <Typography textAlign={"center"}>لیست تمام فروشگاه ها</Typography>
       </Box>
       
-      <Box overflow={"auto"}>
+      <Box overflow={"auto"}  display={'flex'} flexDirection={'column'}>
         {<AllShop  dataProps={data} />}
       </Box>
     </Box>

@@ -15,9 +15,11 @@
     "@mui/material": "^5.14.12",
     "axios": "^1.5.1",
     "next": "latest",
+    "ol": "^8.1.0",
     "react": "latest",
     "react-dom": "latest",
     "react-hook-form": "^7.47.0",
+    "recharts": "^2.9.0",
     "sass": "^1.69.0"
   },
   "devDependencies": {

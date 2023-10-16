@@ -1,11 +1,11 @@
-import SelectRole from '@/client/SelectRole'
+import MapComp from '@/client/Map'
 import { Box } from '@mui/material'
 import React from 'react'
 
 const page = () => {
   return (
-    <Box p={2}>
-      <SelectRole/>
+    <Box>
+      <MapComp />
     </Box>
   )
 }
