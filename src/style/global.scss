@@ -4,6 +4,7 @@ $black: #000;
   margin: 0;
   padding: 0;
   font-family: vazir;
+  box-sizing: border-box;
 
 }
 html body {
@@ -18,7 +19,7 @@ html body {
 }
 @font-face {
   font-family: yekan;
-  src: url("../../public/fonts/yekan/yekan.ttf");
+  src: url("../../public/fonts/B_Yekan/Yekan.ttf");
   format: ("ttf");
   font-display: swap;
 }

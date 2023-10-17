@@ -21,7 +21,7 @@ interface CompProps {
     sx?: object;
     fullWidth? :any;
     value?:any;
-    onChenge?:any;
+    onChange?:any;
     label?:any;
     Icon?:any;
     placeholder?:string;
@@ -30,6 +30,7 @@ interface CompProps {
     border_radius?:any;
     size?:any;
     disableLine?:any;
+    sxIcon?:object;
     disabled?:boolean;
 }
 
@@ -49,7 +50,7 @@ const InputWithIcon = ({
   required = false,
   fullWidth = true,
   value,
-  onChenge,
+  onChange,
   label,
   Icon,
   placeholder = "لطفا " + label + " وارد کنید. ",
@@ -59,8 +60,9 @@ const InputWithIcon = ({
   size='small',
   disableLine=false,
   sx,
-  disabled=false
-  
+  sxIcon,
+  disabled=false,
+
 }:CompProps) => {
 
   return (
@@ -75,25 +77,27 @@ const InputWithIcon = ({
         bgcolor: bgcolor,
       }}
     >
-      {Icon && <Icon sx={{ color: "action.active", mb: 0.5 }} />}
+      {Icon && <Icon sx={{ color: "action.active", mb: 0.5,...sxIcon }} />}
 
       <TextField
-        sx={{borderRadius:border_radius}}
+        sx={{borderRadius:border_radius,mt:.5}}
         InputLabelProps={InputLabelProps} 
         variant={variant}
         label={label}
-        value={value}
         type={type}
         disabled={disabled}
         required={required}
         placeholder={placeholder}
-        // inputProps={{ minLength: 3, maxLength: 100,disableUnderline: noLine }}
-        InputProps={{ disableUnderline:disableLine  }}
+        InputProps={{disableUnderline:disableLine ,
+          ...inputProps
+        }}
         fullWidth={fullWidth}
-        onChange={onChenge}
+        value={value}
+        onChange={(e)=>onChange(e)}
         multiline={multiline}
         maxRows={maxRows}
         size={size}
+        
       />
       <Box
         sx={{
