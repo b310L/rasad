@@ -1,5 +1,5 @@
 "use client"
-import Dialog from '../client components/Dialog'
+import Dialog from '../client/Dialog'
 
 function Page() {
   return (  

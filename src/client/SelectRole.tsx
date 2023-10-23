@@ -73,7 +73,7 @@ const SelectRole = () => {
               }}
               value={1}
               control={<Radio />}
-              label="فروش(شامل میوه فروش و فروشگاه ها و...)"
+              label="فروشگاه (شامل میوه فروش و فروشگاه ها و...)"
             />
             <FormControlLabel
               sx={{ m: 0 }}

@@ -1,7 +1,7 @@
 // Invoice page design
 
 "use client";
- import Field from '@/client components/field'
+ import Field from '@/client/field'
 import {
   Box,
   Card,
@@ -14,7 +14,7 @@ import {
   DialogActions,
 } from "@mui/material";
 import StickyNote2Icon from "@mui/icons-material/StickyNote2"; //icon related to invoice
-import InputWithIcon from "../../src/client components/InputWithIcon";
+import InputWithIcon from "../../src/client/InputWithIcon";
 import { useState } from "react";
 import ScaleIcon from "@mui/icons-material/Scale"; //icon net weight
 import AddIcon from "@mui/icons-material/Add"; //icon add
@@ -51,7 +51,7 @@ function Shop() {
           //responsive code
           {
             width: { lg: "400px", md: "100%", xs: "100%" },
-            height: { lg: "auto", md: "100%", xs: "100%" },
+            maxheight: { lg: "auto", md: "100%", xs: "100%" },
             boxShadow: "0px  0px 1px 0px #00b7c3",
           }
         }

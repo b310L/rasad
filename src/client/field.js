@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react';
-import InputWithIcon from '../client components/InputWithIcon'
+import InputWithIcon from '../client/InputWithIcon'
 import { Card, Typography } from "@mui/material";
 
 

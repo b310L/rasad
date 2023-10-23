@@ -10,7 +10,7 @@ import LoginIcon from '@mui/icons-material/Login';;; // icon related to icon sto
 import { useState } from "react";
 import DigitCode from "./DigitCode";   //component related to dialog
 import Link from "next/link";
-import Ok from '@/client components/Ok'
+import Ok from '@/client/Ok'
 
 const UserForm = () => {
 
@@ -114,7 +114,7 @@ const UserForm = () => {
                       fullWidth
                       sx={{fontSize:'18px'}}
                     >
-                        <Link href='/' style={{ color:'white'}}>ورود</Link>
+                    {/* user or admin or ... */}    <Link href='/profile/user' style={{ color:'white'}}>ورود</Link>
                     </Button>
                 </Box>
 
@@ -131,7 +131,7 @@ const UserForm = () => {
                             fullWidth
                             sx={{color:'#00b7c3'}}
                         >
-                            <Link href="../../ok" style={{color:'#00b7c3'}}>رمز عبور خود را فراموش کردید؟</Link>
+                            <Link href="/login/forget-pass" style={{color:'#00b7c3'}}>رمز عبور خود را فراموش کردید؟</Link>
                         </Button>
 
 

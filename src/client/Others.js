@@ -62,7 +62,7 @@ const UserForm = () => {
               color="#00b7c3"
             > 
             {/* design logo and title */}
-                <Box component={"span"} sx={{mt:'3px'}}> ثبت نام کاربران عادی</Box>    
+                <Box component={"span"} sx={{mt:'3px'}}> ثبت نام سایرین</Box>    
                 <GroupIcon  color="blue[900]" fontSize="large"/>
             </Typography>
 

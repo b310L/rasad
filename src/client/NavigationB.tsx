@@ -13,14 +13,25 @@ import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import { useRouter,usePathname } from 'next/navigation';
 const NavigationB = ({valueTab,setValueTab,params}:any) => {
   const router=useRouter()
- 
+  const pathName=usePathname()
+  const activeValue=()=>{
+    if(pathName==='/'){
+      return 0
+    }
+    else if(pathName==='/stores'){
+      return 1
+    }
+    else if(pathName==='/profile'){
+      return 2
+    }
+  }
   return (
     <>
       <BottomNavigation
         // sx={{padding:1}}
         sx={{ position: "fixed", bottom: 0, width: "100%" }}
         showLabels
-        value={valueTab}
+        value={activeValue()}
         onChange={(event, newValue) => {
           setValueTab(newValue);
         }}

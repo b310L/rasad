@@ -1,4 +1,4 @@
-import Admin from '../../client components/adminPage/adminPage'
+import Admin from '../../client/adminPage/adminPage'
 function Page() {
     return ( 
         <>

@@ -30,10 +30,9 @@ export default function RootLayout({
             <Box  ><br/><br/></Box>
           )}
         </Box>
-        <Box flexShrink={0}>
-          {screenTablet && (
-            <NavigationB valueTab={index} setValueTab={setIndex} />
-          )}
+        <Box display={{md:'none'}} flexShrink={0} zIndex={3333333} >
+            <NavigationB  valueTab={index} setValueTab={setIndex} />
+          
         </Box>
       </Box>
     </>

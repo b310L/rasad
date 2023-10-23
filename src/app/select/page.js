@@ -1,4 +1,4 @@
-import ButtonBase from "../../client components/dropDown/ButtonBase";
+import ButtonBase from "../../client/dropDown/ButtonBase";
 function Page() {
     return (  
         <ButtonBase />

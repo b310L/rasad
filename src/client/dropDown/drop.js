@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import Link from "next/link";
 import InputWithIcon from "../InputWithIcon";
-import {select} from '@/client components/dropDown/ButtonBase'
+import {select} from '@/client/dropDown/ButtonBase'
 function Drop() {
 
     return ( 

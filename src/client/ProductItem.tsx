@@ -175,6 +175,7 @@ const ProductItem = ({u_store_id,data}) => {
           {data.sale_price}
 
           </Typography>
+       
 
           </Box>
           

@@ -16,6 +16,7 @@ import shop2 from "../../../../public/imgs/shop2.jpeg";
 import AllShop from "@/client/AllShop";
 import { GetApi } from "@/server/GetApi";
 import { PostApi } from "@/server/PostApi";
+import Link from "next/link";
 
 const page = () => {
   const data3 = [
@@ -64,37 +65,91 @@ const page = () => {
   const [data, setData] = useState<Array<object>>();
   const getDataFromApi = async () => {
     const dataFromAPi = await GetApi("http://0.0.0.0:8088/api/store/");
-    setData(dataFromAPi)
+    setData(dataFromAPi);
     return dataFromAPi;
   };
   useEffect(() => {
-   
-    getDataFromApi()
+    getDataFromApi();
     return () => {};
   }, []);
-  
+
   const [searchVal, setSearchVal] = useState("");
   const [close, setClose] = useState(false);
 
   const handleChange = (e: any) => {
     setSearchVal(e.target.value);
 
-    if(e.target.value.trim().length>=1){
+    if (e.target.value.trim().length >= 1) {
       const getDataFromApi = async () => {
-        const dataFromAPi = await PostApi("http://0.0.0.0:8088/api/store/search/", {search:e.target.value.trim()});
-        console.log('dataFromAPi'+dataFromAPi);
+        const dataFromAPi = await PostApi(
+          "http://0.0.0.0:8088/api/store/search/",
+          { search: e.target.value.trim() }
+        );
+        console.log("dataFromAPi" + dataFromAPi);
         setData(dataFromAPi);
         return dataFromAPi;
       };
       getDataFromApi();
     }
-    if(e.target.value.trim().length==0){
-      getDataFromApi()
+    if (e.target.value.trim().length == 0) {
+      getDataFromApi();
     }
-    
   };
   return (
-    <Box
+    <>
+      {data ? (
+        <Box
+          p={2}
+          display={"flex"}
+          gap={1}
+          flexDirection={"column"}
+          justifyContent={"center"}
+        >
+          <Box
+            width={"100%"}
+            height={"100%"}
+            sx={{
+              position: "sticky",
+              top: 0,
+              zIndex: 4,
+              backgroundColor: "#fff",
+            }}
+          >
+            <Box>
+              <Search searchVal={searchVal} onChange={(e) => handleChange(e)}>
+                {/* <Suspense fallback={<CircularProgress />}>
+              <Box
+                sx={{
+                  width: "100%",
+                  position: "absolute",
+                  display: "flex",
+                  justifyContent: "center",
+                  width: "100%",
+                }}
+              >
+                {searchVal.length >= 2 && (
+                  <ResultSearch close={close} setClose={setClose} data={data} />
+                )}
+              </Box>
+            </Suspense> */}
+              </Search>
+              <Link href={'/stores-map'}>
+              <Button fullWidth variant="custom">
+                جستجوی فروشگاه از نقشه{" "}
+              </Button>
+              </Link>
+            </Box>
+
+            <Divider variant="middle" sx={{ m: 1 }} />
+            <Typography textAlign={"center"}>لیست تمام فروشگاه ها</Typography>
+          </Box>
+
+          <Box overflow={"auto"} display={"flex"} flexDirection={"column"}>
+            {<AllShop dataProps={data} />}
+          </Box>
+        </Box>
+      ) : (
+        <Box
     p={2}
       display={"flex"}
       gap={1}
@@ -131,9 +186,11 @@ const page = () => {
       </Box>
       
       <Box overflow={"auto"}  display={'flex'} flexDirection={'column'}>
-        {<AllShop  dataProps={data} />}
+        {<AllShop  dataProps={data3} />}
       </Box>
     </Box>
+      )}
+    </>
   );
 };
 

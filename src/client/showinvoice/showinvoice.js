@@ -5,9 +5,9 @@ import { Box, Card, CardActions, Typography } from "@mui/material";
 import Link from "next/link";
 
 const selectInvoiceForShow = [
-    { name : 'فاکتور مشتری' , src : '../../showInvoiceCustomer'},
-    { name : ' فاکتور مغازه دار' , src : '../../showInvoiceSales'},
-    { name : 'فاکتور غرفه دار' , src : '../../showInvoiceEntery'},
+    { name : 'فاکتور مشتری' , src : '/profile/admin/show-invoice/showInvoiceCustomer'},
+    { name : ' فاکتور مغازه دار' , src : '/profile/admin/show-invoice/showInvoiceSales'},
+    { name : 'فاکتور غرفه دار' , src : '/profile/admin/show-invoice/showInvoiceEntery'},
 ]
 
 

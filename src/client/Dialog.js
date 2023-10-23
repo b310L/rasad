@@ -143,7 +143,7 @@ const Sale = () => {
                             }
                           >
                               <Button variant="custom"> 
-                                    <Link href="../r-num" style={{color:'white'}}> ادامه</Link>
+                                    <Link href="../login/forget-pass/pass-recovery" style={{color:'white'}}> ادامه</Link>
                               </Button>
                           </DialogActions>
                     </Box>

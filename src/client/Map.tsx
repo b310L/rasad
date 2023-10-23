@@ -208,10 +208,10 @@ const MapComp = ({ userSelectedLocation, setUserSelectedLocation }) => {
         // xvz coordinates
         // projection: "EPSG:3857",
         // iran lat long
-        center: LongLat != null ? LongLat : [0, 0],
+        center:[54.35485927034388, 31.89744387851659], 
         // multiWorld:true,
         // [54.3512252, 31.837571]
-        zoom: 4.5,
+        zoom: 15,
       }),
 
       controls: defaultControls({ attribution: false }).extend([

@@ -18,10 +18,10 @@ import InputWithIcon from "../InputWithIcon";
 import { useState } from "react";
 import ScaleIcon from "@mui/icons-material/Scale"; //icon net weight
 import AddIcon from "@mui/icons-material/Add"; //icon add
-import Sproduct from "@/client components/invoice/Sproduct";
+import Sproduct from "@/client/invoice/Sproduct";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"; //icon selected
 import Link from "next/link";
-function Invoice() {
+function BarbarInvoice() {
   // states related to inputs field
   const [saler, setSaler] = useState("");
   const [bayer, setBuyer] = useState("");
@@ -96,7 +96,7 @@ function Invoice() {
             }}
             color="#00b7c3"
           >
-            <Box component={"span"}>فاکتور عمده فروش</Box>
+            <Box component={"span"}>فاکتور  باربر</Box>
             <StickyNote2Icon color="#00b7c3" fontSize="large"></StickyNote2Icon>
           </Typography>
 
@@ -310,4 +310,4 @@ function Invoice() {
   );
 }
 
-export default Invoice;
+export default BarbarInvoice;

@@ -1,8 +1,8 @@
 import React from 'react'
-
+import Login from '../../../client/Login'
 const page = () => {
   return (
-    <div>page</div>
+    <Login/>
   )
 }
 

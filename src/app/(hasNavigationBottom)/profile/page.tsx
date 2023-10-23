@@ -1,11 +1,15 @@
 "use client";
 import { currentUserContext } from "@/provider/CurrentUserProvider";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Typography,useMediaQuery } from "@mui/material";
 import React, { useContext } from "react";
 import { useRouter } from "next/navigation";
 import UserDetail from "@/client/UserDetail";
+import { useTheme } from "@mui/material/styles";
+import Link from "next/link";
 
 const page = () => {
+  const theme = useTheme();
+  const screenTablet = useMediaQuery(theme.breakpoints.down("md"));
   const router = useRouter();
   const [currentUser, setCurrentUser] = useContext(currentUserContext);
   return (
@@ -24,14 +28,14 @@ const page = () => {
 
           <Button
             variant="custom"
-            sx={{ flexGrow: 1 }}
+            sx={{ flexBasis: '50%' }}
             onClick={() => {
               router.push("/login");
             }}
             >
             ورود
           </Button>
-          <Button sx={{ flexGrow: 1 }}
+          <Button sx={{ flexBasis: '50%' }}
             variant="custom"
             onClick={() => {
               router.push("/register");
@@ -42,8 +46,33 @@ const page = () => {
             </Box>
         </>
       )}
+         <Box display={'flex'} justifyContent={'center'} gap={1} >
+         <Link href={'/profile/user'} style={{ flexBasis: '50%' }}>
+          <Button fullWidth variant="custom" >
+            مشتری
+          </Button>
+        </Link>
+        <Link href={'/profile/barbar'} style={{ flexBasis: '50%' }}>
+          <Button fullWidth variant="custom" >
+            باربر
+          </Button>
+        </Link>
+         </Box>
+         <Box display={'flex'} justifyContent={'center'} gap={1} >
+         <Link href={'/profile/wholesaler'} style={{ flexBasis: '50%' }}>
+          <Button fullWidth variant="custom" >
+            عمده فروش(غرفه دار)
+          </Button>
+        </Link>
+        <Link href={'/profile/admin'} style={{ flexBasis: '50%' }}>
+          <Button fullWidth variant="custom" >
+             ادمین
+          </Button>
+        </Link>
+         </Box>
 
-      <Button variant="custom" onClick={() => setCurrentUser("علی")}>set to ali</Button>
+       
+      {/* <Button variant="custom" onClick={() => setCurrentUser("علی")}>set to ali</Button> */}
     </Box>
   );
 };

@@ -60,7 +60,7 @@ const UserForm = () => {
               }
               color="#00b7c3"
             > 
-                <Box component={"span"} sx={{mt:'3px'}}> خرده فروش</Box>
+                <Box component={"span"} sx={{mt:'3px'}}> میوه فروش</Box>
                 <StoreMallDirectoryIcon  color="blue[900]" fontSize="large"/>
             </Typography>
 
