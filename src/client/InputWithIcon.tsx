@@ -72,8 +72,7 @@ const InputWithIcon = ({
         display: "flex",
         flexDirection: "row",
         alignItems: "end",
-        gap: 0.5,
-        px: 1,
+        px: .2,
         bgcolor: bgcolor,
       }}
     >
@@ -109,7 +108,6 @@ const InputWithIcon = ({
       >
         {children}
       </Box>
-      <Box sx={{ mb: 4 }}></Box>
       
     </Box>
   );

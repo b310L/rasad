@@ -4,10 +4,12 @@ import { CacheProvider } from "@emotion/react";
 import { primary } from "@/client/BaseColor";
 
 const theme = createTheme({
-  direction: "rtl",
+  
   typography: {
     fontFamily:  "yekan ,Roboto",
     fontSize:12,
+   
+
     h1: {
       fontWeight: 500,
       fontSize: '2.5rem',
@@ -16,23 +18,32 @@ const theme = createTheme({
     h2: {
       fontWeight: 400,
       fontSize: '2rem',
+
     },
     h3: {
       fontWeight: '300',
-      fontSize: '1.8rem',
+      fontSize: '1.5rem',
+
     },
     h4: {
       fontWeight: 210,
-      fontSize: '1.5rem',
+      fontSize: '1.2rem',
+
     },
     h5: {
       fontWeight: '150',
       fontSize: '.8rem',
+
     },
     h6: {
       fontWeight: '100',
       fontSize: '.5rem',
+
     },
+    body1:{
+      color:primary[700],
+
+    }
     
   },
   palette: {
@@ -59,6 +70,16 @@ const theme = createTheme({
       light: '#fff',
       dark: '#000',
       contrastText: '#fff',
+    },
+    gray: {
+
+      main: "#888",
+      light:"#ccc",
+      dark:"#333",
+      
+      // light: will be calculated from palette.primary.main,
+      // dark: will be calculated from palette.primary.main,
+      // contrastText: will be calculated to contrast with palette.primary.main
     },
     
   },
@@ -148,6 +169,7 @@ const theme = createTheme({
             backgroundImage: "linear-gradient(to right, #00b7c3,#33c5cf)",
 
             "&:hover": {
+              color: "#fff",
 
               backgroundImage: "linear-gradient(to right, #00929c,#00b7c3)",
 

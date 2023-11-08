@@ -35,14 +35,16 @@ export const sxGrwoWidth = {
   };
   interface Props{
     sx?:object;
+    defaultSx?:object;
+
     href:string;
-    title:string;
+    children?:any
   }
-const MixLink = ({title='Title',href='#',sx={...sxGrwoWidth}}:Props) => {
+const MixLink = ({href='#',defaultSx={textDecoration:'none',color:primary[800]},sx,children}:Props) => {
   return (
     <Link href={"/"} passHref>
-      <MuiLink href={href} sx={{  ...sx}}>
-        {title}
+      <MuiLink href={href} sx={{...defaultSx,...sx  }}>
+        {children}
       </MuiLink>
     </Link>
   );

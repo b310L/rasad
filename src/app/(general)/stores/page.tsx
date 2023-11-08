@@ -11,12 +11,12 @@ import {
 } from "@mui/material";
 import React, { Suspense, useEffect, useState } from "react";
 import yazdImg from "../../../../public/imgs/home-img.png";
-import shop1 from "../../../../public/imgs/shop1.jpeg";
-import shop2 from "../../../../public/imgs/shop2.jpeg";
+
 import AllShop from "@/client/AllShop";
 import { GetApi } from "@/server/GetApi";
 import { PostApi } from "@/server/PostApi";
 import Link from "next/link";
+import { shop1, shop2 } from "@/ImageDefinition/ImageDefiinition";
 
 const page = () => {
   const data3 = [
@@ -66,6 +66,7 @@ const page = () => {
   const getDataFromApi = async () => {
     const dataFromAPi = await GetApi("http://0.0.0.0:8088/api/store/");
     setData(dataFromAPi);
+    console.log(dataFromAPi)
     return dataFromAPi;
   };
   useEffect(() => {

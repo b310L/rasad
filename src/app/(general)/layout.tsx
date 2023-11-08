@@ -5,32 +5,45 @@ import {
   Box,
   useMediaQuery,
 } from "@mui/material";
-import { SetStateAction, createContext, useContext, useState } from "react";
+import { Fragment, SetStateAction, createContext, useContext, useState } from "react";
 import { useTheme } from "@mui/material/styles";
 
 import { TabValueContext } from "@/provider/TabValueProvider";
 import NavigationB from "@/client/NavigationB";
+import MainAppbar from "@/client/Appbar/MainAppbar";
+import MobileAppbar from "@/client/Appbar/MobileAppbar";
+import MyDrawer from "@/client/utility/MyDrawer";
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [index, setIndex] = useContext(TabValueContext);
   const theme = useTheme();
-  const screenTablet = useMediaQuery(theme.breakpoints.down("md"));
+  const [openDrawer, setOpenDrawer] = useState(false);
+  const [index, setIndex] = useContext(TabValueContext);
   return (
     <>
       <Box display={"flex"} flexDirection={"column"} height={"100vh"}>
-        <Box p={screenTablet ? 0 : 0} flexGrow={1}>
+       {<Box  display={{xs:'none',md:'block'}} >
+        <MainAppbar />
+       </Box>
+       }
+       {<Box   display={{xs:'block',md:'none'}} >
+       <MobileAppbar openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
+
+       </Box>
+       }
+
+        <Box p={ 0} flexGrow={1}>
           {children}
         </Box>
-        <Box>
-        {screenTablet && (
-            <Box  ><br/><br/></Box>
-          )}
-        </Box>
-        <Box display={{md:'none'}} flexShrink={0} zIndex={3333333} >
+    
+        
+        <MyDrawer open={openDrawer} setOpen={setOpenDrawer}>
+        <Box p={2}>سلام</Box>
+      </MyDrawer>
+      <Box display={{md:'none'}} flexShrink={0} zIndex={3333333} >
             <NavigationB  valueTab={index} setValueTab={setIndex} />
           
         </Box>
@@ -38,3 +51,11 @@ export default function RootLayout({
     </>
   );
 }
+
+
+// const [index, setIndex] = useContext(TabValueContext);
+
+{/* <Box display={{md:'none'}} flexShrink={0} zIndex={3333333} >
+            <NavigationB  valueTab={index} setValueTab={setIndex} />
+          
+        </Box> */}
