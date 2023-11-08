@@ -20,6 +20,7 @@ import { GetApi } from "@/server/GetApi";
 import PlaceIcon from "@mui/icons-material/Place";
 import RadioGroupRating from "@/client/IconRate";
 import ErrorDataFetchingBox from "@/client/ErrorDataFetchingBox";
+import { fakeDetailStoreData } from "./storeDetailData";
 
 const page = ({ params }: { params: { slug: string } }) => {
   // const getApi= async()=>{
@@ -28,7 +29,7 @@ const page = ({ params }: { params: { slug: string } }) => {
   // }
   // const apiData=getApi()
 
-  const [apiData, setApiData] = useState(null);
+  const [apiData, setApiData] = useState<null|Array<any>>(fakeDetailStoreData[2]);
   const [status, setStatus] = useState<"loading" | "loaded" | null | "error">(
     null
   );
@@ -43,6 +44,7 @@ const page = ({ params }: { params: { slug: string } }) => {
       setApiData(dataFromAPi);
       setStatus("loaded");
       if (dataFromAPi === false) {
+        setApiData(fakeDetailStoreData[2])
         setStatus("error");
       }
 
@@ -142,7 +144,7 @@ const page = ({ params }: { params: { slug: string } }) => {
         </Box>
       )}
 
-      {status === "error" && (
+      {/* {status === "error" && (
         <Box
           display={"flex"}
           justifyContent={"center"}
@@ -151,6 +153,91 @@ const page = ({ params }: { params: { slug: string } }) => {
         >
           <ErrorDataFetchingBox />
         </Box>
+      )} */}
+
+      {/* status === null for offline */}
+      {status ===  'error' && (
+           <Box
+           display={"flex"}
+           gap={0.5}
+           p={2}
+           flexDirection={"column"}
+           justifyContent={"center"}
+         >
+           <Box
+             sx={{
+               backgroundImage: `url("../../../public/imgs/shop2.jpeg")`,
+               overflow: "hidden",
+             }}
+             bgcolor={primary[500]}
+             m={1}
+             borderRadius={10}
+             flexGrow={1}
+             position={"relative"}
+             height={"200px"}
+           >
+             <Image
+               style={{
+                 opacity: 0.9,
+                 borderRadius: "inherit",
+                 filter: "blur(5px)",
+               }}
+               src={apiData.src}
+               alt="shop img"
+               fill
+               objectFit="cover"
+             />
+             {apiData.s_image ? (
+               <Image
+                 // http://0.0.0.0:8088/media/store/images#
+                 // /media/store/images/shop2.jpeg
+ 
+                 src={"http://0.0.0.0:8088/" + apiData.s_image}
+                 style={{ flexShrink: 0, objectFit: "cover", borderRadius: 20 }}
+                 fill
+                 alt={apiData.s_name}
+               />
+             ) : (
+               <Image
+                 src={replaceImage}
+                 style={{ flexShrink: 0, objectFit: "cover", borderRadius: 20 }}
+                 fill
+                 alt="بدون عکس"
+               />
+             )}
+           </Box>
+           <Divider sx={{ mb: 1 }} />
+           {/* <Divider sx={{position:'absolute'}} orientation="vertical"/> */}
+ 
+           <Typography variant="h3">{apiData.s_name}</Typography>
+           <Typography variant="body">{apiData.s_description}</Typography>
+           <Box display={"flex"}>
+             <Box flexGrow={1}>
+               <Typography variant="body2" color={"primary.main"}>
+                 آدرس: {apiData.s_address}
+               </Typography>
+               <Typography variant="body2" color={"primary.main"}>
+                 کد پستی: {apiData.s_postal_code}
+               </Typography>
+             </Box>
+ 
+             <Button size="small" sx={{ color: "#fff" }} variant="contained">
+               <PlaceIcon fontSize="large" />
+             </Button>
+           </Box>
+           <Typography variant="body2">
+             {/* شماره تماس: {apiData.u_id.u_phone_number} */}
+           </Typography>
+           <Link href={"/products/" + apiData.id}>
+             <Button fullWidth variant="custom">
+               <Typography color="#fff">نمایش کالاهای فروشگاه</Typography>
+             </Button>
+           </Link>
+           <Button sx={{ bgcolor: secondary[500], color: "#fff","&:hover":{bgcolor:secondary[600]} }}>
+             <Typography variant="h5">شکایت</Typography>
+           </Button>
+           <RadioGroupRating />
+         </Box>
       )}
     </>
   );

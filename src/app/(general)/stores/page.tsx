@@ -21,53 +21,45 @@ import { shop1, shop2 } from "@/ImageDefinition/ImageDefiinition";
 const page = () => {
   const data3 = [
     {
-      name: "فروشگاه رفاه",
-      adress: "میدان مهدیه بلوار امام جعغرصادق علیه السلام ",
-      src: shop2,
+      s_name: "فروشگاه رفاه",
+      s_adress: "میدان مهدیه بلوار امام جعغرصادق علیه السلام ",
+      s_image: shop2,
     },
     {
-      name: "فروشگاه رفاه",
-      adress: "میدان مهدیه بلوار امام جعغرصادق علیه السلام ",
-      src: shop1,
+      s_name: "فروشگاه ترنج",
+      s_adress: "میدان مهدیه بلوار امام جعغرصادق علیه السلام ",
+      s_image: shop1,
     },
     {
-      name: "فروشگاه رفاه",
-      adress: "میدان مهدیه بلوار امام جعغرصادق علیه السلام ",
-      src: shop2,
+      s_name: "فروشگاه خوبی",
+      s_adress: "میدان مهدیه بلوار امام جعغرصادق علیه السلام ",
+      s_image: shop2,
     },
     {
-      name: "فروشگاه رفاه",
-      adress: "میدان مهدیه بلوار امام جعغرصادق علیه السلام ",
-      src: shop1,
+      s_name: "فروشگاه نارنجی",
+      s_adress: "میدان مهدیه بلوار امام جعغرصادق علیه السلام ",
+      s_image: shop1,
     },
     {
-      name: "فروشگاه رفاه",
-      adress: "میدان مهدیه بلوار امام جعغرصادق علیه السلام ",
-      src: shop2,
+      s_name: "فروشگاه دریا",
+      s_adress: "میدان مهدیه بلوار امام جعغرصادق علیه السلام ",
+      s_image: shop2,
     },
-    {
-      name: "فروشگاه رفاه",
-      adress: "میدان مهدیه بلوار امام جعغرصادق علیه السلام ",
-      src: shop1,
-    },
-    {
-      name: "فروشگاه رفاه",
-      adress: "میدان مهدیه بلوار امام جعغرصادق علیه السلام ",
-      src: shop1,
-    },
-    {
-      name: "فروشگاه رفاه",
-      adress: "میدان مهدیه بلوار امام جعغرصادق علیه السلام ",
-      src: shop1,
-    },
-    { name: "2", adress: "2", src: shop2 },
   ];
-  const [data, setData] = useState<Array<object>>();
+  const [data, setData] = useState<Array<object>>([]);
+  const [offdata, setOffData] = useState<Array<object>>(data3);
+  const [status, setStatus] = useState<string>("No");
+
   const getDataFromApi = async () => {
+    setStatus('Fetching');
+
     const dataFromAPi = await GetApi("http://0.0.0.0:8088/api/store/");
     setData(dataFromAPi);
-    console.log(dataFromAPi)
-    return dataFromAPi;
+    if (dataFromAPi.length > 0) {
+      setStatus('Recieved');
+    }
+
+    // console.log("dataFromAPi: " + dataFromAPi);
   };
   useEffect(() => {
     getDataFromApi();
@@ -79,27 +71,40 @@ const page = () => {
 
   const handleChange = (e: any) => {
     setSearchVal(e.target.value);
-
-    if (e.target.value.trim().length >= 1) {
-      const getDataFromApi = async () => {
-        const dataFromAPi = await PostApi(
-          "http://0.0.0.0:8088/api/store/search/",
-          { search: e.target.value.trim() }
-        );
-        console.log("dataFromAPi" + dataFromAPi);
-        setData(dataFromAPi);
-        return dataFromAPi;
-      };
-      getDataFromApi();
+    if(status!=='Recieved' ){
+      const filterData=data3.filter((d)=>{
+        return d.s_name.includes(e.target.value) 
+      });
+      console.log('## '+JSON.stringify(filterData))
+      setOffData(filterData);
     }
-    if (e.target.value.trim().length == 0) {
-      getDataFromApi();
+    else {
+      if (e.target.value.trim().length >= 1) {
+        const getDataFromApi = async () => {
+          const dataFromAPi = await PostApi(
+            "http://0.0.0.0:8088/api/store/search/",
+            { search: e.target.value.trim() }
+          );
+          // console.log("dataFromAPi" + dataFromAPi);
+          setData(dataFromAPi);
+          return dataFromAPi;
+        };
+        getDataFromApi();
+      }
+      if (e.target.value.trim().length == 0) {
+        getDataFromApi();
+      }
     }
+   
+    
+   
   };
   return (
     <>
-      {data ? (
+      {status == "Recieved" ? (
+        // data from api
         <Box
+        key={1}
           p={2}
           display={"flex"}
           gap={1}
@@ -134,10 +139,10 @@ const page = () => {
               </Box>
             </Suspense> */}
               </Search>
-              <Link href={'/stores-map'}>
-              <Button fullWidth variant="custom">
-                جستجوی فروشگاه از نقشه{" "}
-              </Button>
+              <Link href={"/stores-map"}>
+                <Button fullWidth variant="custom">
+                  جستجوی فروشگاه از نقشه{" "}
+                </Button>
               </Link>
             </Box>
 
@@ -150,18 +155,28 @@ const page = () => {
           </Box>
         </Box>
       ) : (
+        // offline data
         <Box
-    p={2}
-      display={"flex"}
-      gap={1}
-     
-      flexDirection={"column"}
-      justifyContent={"center"}
-    >
-      <Box width={"100%"} height={"100%"} sx={{ position: "sticky", top: 0,zIndex:4,backgroundColor:'#fff' }}>
-        <Box>
-          <Search searchVal={searchVal} onChange={(e) => handleChange(e)}>
-            {/* <Suspense fallback={<CircularProgress />}>
+          key={2}
+          p={2}
+          display={"flex"}
+          gap={1}
+          flexDirection={"column"}
+          justifyContent={"center"}
+        >Fake Data
+          <Box
+            width={"100%"}
+            height={"100%"}
+            sx={{
+              position: "sticky",
+              top: 0,
+              zIndex: 4,
+              backgroundColor: "#fff",
+            }}
+          >
+            <Box>
+              <Search searchVal={searchVal} onChange={(e) => handleChange(e)}>
+                {/* <Suspense fallback={<CircularProgress />}>
               <Box
                 sx={{
                   width: "100%",
@@ -176,20 +191,20 @@ const page = () => {
                 )}
               </Box>
             </Suspense> */}
-          </Search>
-          <Button fullWidth variant="custom">
-            جستجوی فروشگاه از نقشه{" "}
-          </Button>
-        </Box>
+              </Search>
+              <Button fullWidth variant="custom">
+                جستجوی فروشگاه از نقشه{" "}
+              </Button>
+            </Box>
 
-      <Divider variant="middle" sx={{m:1}} />
-      <Typography textAlign={"center"}>لیست تمام فروشگاه ها</Typography>
-      </Box>
-      
-      <Box overflow={"auto"}  display={'flex'} flexDirection={'column'}>
-        {<AllShop  dataProps={data3} />}
-      </Box>
-    </Box>
+            <Divider variant="middle" sx={{ m: 1 }} />
+            <Typography textAlign={"center"}>لیست تمام فروشگاه ها</Typography>
+          </Box>
+
+          <Box overflow={"auto"} display={"flex"} flexDirection={"column"}>
+            {<AllShop dataProps={offdata} />}
+          </Box>
+        </Box>
       )}
     </>
   );

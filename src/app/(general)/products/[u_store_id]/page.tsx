@@ -5,6 +5,7 @@ import Search from "@/client/Search";
 import { GetApi } from "@/server/GetApi";
 import { Box, Divider } from "@mui/material";
 import { useEffect, useState } from "react";
+import { fakeProductsOfStoreData } from "./fakeProductsOfStoreData";
 
 const productsListOfStorePage = ({
   params,
@@ -61,14 +62,27 @@ const productsListOfStorePage = ({
               </Box>
             </Suspense> */}
       </Search>
-      {apiData?.map((data) => {
+      {(apiData?.length>0)?
+    (  apiData?.map((data) => {
         return (
           <Box display={'flex'} flexDirection={'column'} >
             <ProductItem data={data} u_store_id={params.u_store_id} />
             <Divider sx={{my:1,bgcolor:primary[500]}} />
           </Box>
         );
-      })}
+      }))
+      :
+      fakeProductsOfStoreData?.map((data) => {
+        return (
+          <Box display={'flex'} flexDirection={'column'} >
+            <ProductItem data={data} u_store_id={params.u_store_id} />
+            <Divider sx={{my:1,bgcolor:primary[500]}} />
+          </Box>
+        );
+      })
+      }
+      
+      
     </div>
   );
 };

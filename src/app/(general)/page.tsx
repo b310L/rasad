@@ -67,8 +67,8 @@ const Page = () => {
           position={"relative"}
         >
           <LinkBoxWithImg href={'/stores'} />
-          <LinkBoxWithImg src={complaint} title="ثبت شکایت" />
-          <LinkBoxWithImg src={survey}  title="اعلام نظر"/>
+          <LinkBoxWithImg src={complaint} desc='شکایت خود را ثبت کنید' title="ثبت شکایت" />
+          <LinkBoxWithImg src={survey} desc='نظر خود را اعلام کنید'  title="اعلام نظر"/>
           <Box
             display={"flex"}
             justifyContent={"center"}

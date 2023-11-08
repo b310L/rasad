@@ -55,7 +55,7 @@ const ShopBox = (data: any) => {
         // http://0.0.0.0:8088/media/store/images# 
         // /media/store/images/shop2.jpeg
 
-          src={'http://0.0.0.0:8088/'+data2.s_image }
+          src={(typeof data2.s_image)=='string'?'http://0.0.0.0:8088/'+data2.s_image:data2.s_image }
           style={{ flexShrink: 0, objectFit: "cover", borderRadius: 20 }}
           width={120}
           height={120}
